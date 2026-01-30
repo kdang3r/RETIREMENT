@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retirement Countdown</title>
+    <title>Bernie's Retirement Countdown</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,14 +14,14 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            background: linear-gradient(135deg, #1a1f16 0%, #2d3a2d 50%, #1a1f16 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             color: #fff;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -40,7 +40,7 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background: rgba(168, 85, 247, 0.4);
+            background: rgba(134, 169, 106, 0.4);
             border-radius: 50%;
             animation: float 15s infinite ease-in-out;
         }
@@ -94,7 +94,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #a855f7, #ec4899, #a855f7);
+            background: linear-gradient(90deg, #86a96a, #b8d4a0, #86a96a);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -109,9 +109,47 @@
 
         .subtitle {
             font-size: 1.2rem;
-            color: #a78bfa;
-            margin-bottom: 3rem;
+            color: #a3c287;
+            margin-bottom: 2rem;
             font-weight: 300;
+        }
+
+        /* Date Toggle Button */
+        .toggle-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .toggle-btn {
+            background: rgba(45, 58, 45, 0.8);
+            border: 2px solid rgba(134, 169, 106, 0.4);
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: inline-flex;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .toggle-option {
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            border: none;
+            background: transparent;
+            color: #a3c287;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-option:hover {
+            color: #d4e6c3;
+        }
+
+        .toggle-option.active {
+            background: linear-gradient(135deg, #5a7a4a, #6b8f5a);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(134, 169, 106, 0.3);
         }
 
         .countdown-container {
@@ -123,20 +161,20 @@
         }
 
         .countdown-box {
-            background: rgba(30, 27, 75, 0.7);
-            border: 2px solid rgba(168, 85, 247, 0.3);
+            background: rgba(45, 58, 45, 0.7);
+            border: 2px solid rgba(134, 169, 106, 0.3);
             border-radius: 20px;
             padding: 1.5rem 2rem;
             min-width: 120px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(168, 85, 247, 0.2);
+            box-shadow: 0 8px 32px rgba(134, 169, 106, 0.15);
         }
 
         .countdown-box:hover {
             transform: translateY(-5px);
-            border-color: rgba(168, 85, 247, 0.6);
-            box-shadow: 0 12px 40px rgba(168, 85, 247, 0.3);
+            border-color: rgba(134, 169, 106, 0.6);
+            box-shadow: 0 12px 40px rgba(134, 169, 106, 0.25);
         }
 
         .countdown-value {
@@ -144,12 +182,12 @@
             font-weight: 700;
             color: #fff;
             line-height: 1;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            text-shadow: 0 0 20px rgba(134, 169, 106, 0.4);
         }
 
         .countdown-label {
             font-size: 0.9rem;
-            color: #a78bfa;
+            color: #a3c287;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 0.5rem;
@@ -157,12 +195,12 @@
 
         .target-date {
             font-size: 1.1rem;
-            color: #94a3b8;
+            color: #8fa87a;
             margin-bottom: 2rem;
         }
 
         .target-date span {
-            color: #a855f7;
+            color: #b8d4a0;
             font-weight: 600;
         }
 
@@ -177,36 +215,36 @@
             justify-content: space-between;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            color: #94a3b8;
+            color: #8fa87a;
         }
 
         .progress-bar {
             height: 12px;
-            background: rgba(30, 27, 75, 0.7);
+            background: rgba(45, 58, 45, 0.7);
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(168, 85, 247, 0.3);
+            border: 1px solid rgba(134, 169, 106, 0.3);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #a855f7, #ec4899);
+            background: linear-gradient(90deg, #5a7a4a, #86a96a, #a3c287);
             border-radius: 10px;
             transition: width 1s ease;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 20px rgba(134, 169, 106, 0.4);
         }
 
         .motivational-quote {
             margin-top: 3rem;
             font-style: italic;
-            color: #cbd5e1;
+            color: #c4d4b8;
             font-size: 1.1rem;
             max-width: 600px;
             line-height: 1.6;
         }
 
         .quote-icon {
-            color: #a855f7;
+            color: #86a96a;
             font-size: 1.5rem;
         }
 
@@ -231,6 +269,12 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: rgba(163, 194, 135, 0.5);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
@@ -251,6 +295,11 @@
 
             .countdown-label {
                 font-size: 0.7rem;
+            }
+
+            .toggle-option {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -274,8 +323,20 @@
         <!-- Main Countdown View -->
         <div id="countdown-view">
             <div class="header-icon">🌴</div>
-            <h1>Retirement Countdown</h1>
+            <h1>Bernie's Retirement Countdown</h1>
             <p class="subtitle">The adventure begins soon!</p>
+
+            <!-- Date Toggle -->
+            <div class="toggle-container">
+                <div class="toggle-btn">
+                    <button class="toggle-option" id="btn-early" onclick="setRetirementDate('early')">
+                        August 1, 2026
+                    </button>
+                    <button class="toggle-option active" id="btn-late" onclick="setRetirementDate('late')">
+                        December 31, 2029
+                    </button>
+                </div>
+            </div>
 
             <div class="countdown-container">
                 <div class="countdown-box">
@@ -300,7 +361,7 @@
                 </div>
             </div>
 
-            <p class="target-date">Retirement Date: <span>December 31, 2029</span></p>
+            <p class="target-date">Retirement Date: <span id="display-date">December 31, 2029</span></p>
 
             <div class="progress-section">
                 <div class="progress-label">
@@ -317,37 +378,77 @@
                 <span id="quote">Every day brings you closer to your well-deserved freedom!</span>
                 <span class="quote-icon">✨</span>
             </div>
+
+            <div class="footer">
+                Made with 💚 for Bernie
+            </div>
         </div>
 
         <!-- Celebration View (shown when countdown reaches zero) -->
         <div id="celebration-view" class="celebration">
             <div class="celebration-emoji">🎉</div>
-            <h1>Happy Retirement!</h1>
+            <h1>Happy Retirement, Bernie!</h1>
             <p class="subtitle">The wait is over. Your new chapter begins NOW!</p>
             <div style="font-size: 3rem; margin-top: 2rem;">🌴🌺🎊🥳🏖️</div>
+            <div class="footer" style="margin-top: 2rem;">
+                Made with 💚 for Bernie
+            </div>
         </div>
     </div>
 
     <script>
-        // Retirement date: December 31, 2029 at midnight
-        const retirementDate = new Date('2029-12-31T00:00:00').getTime();
+        // Retirement date options
+        const retirementDates = {
+            early: {
+                date: new Date('2026-08-01T00:00:00').getTime(),
+                display: 'August 1, 2026'
+            },
+            late: {
+                date: new Date('2029-12-31T00:00:00').getTime(),
+                display: 'December 31, 2029'
+            }
+        };
+
+        // Current selected retirement date (default to late)
+        let currentSelection = 'late';
+        let retirementDate = retirementDates.late.date;
         
-        // Start date for progress calculation (today when page first loads or a fixed start date)
-        // Using January 1, 2025 as a reference start date for progress
+        // Start date for progress calculation
         const startDate = new Date('2025-01-01T00:00:00').getTime();
 
         const quotes = [
-            "Every day brings you closer to your well-deserved freedom!",
+            "Every day brings you closer to your well-deserved freedom, Bernie!",
             "The best is yet to come. Your adventure awaits!",
             "Soon you'll trade deadlines for lifelines!",
             "Retirement: where every day is a Saturday!",
             "Your future self is thanking you for every day you've worked!",
             "The countdown to endless possibilities continues!",
             "Soon you'll be the CEO of relaxation!",
-            "Freedom is just around the corner!",
+            "Freedom is just around the corner, Bernie!",
             "Every second ticked is a second earned!",
-            "Your hammock is warming up for you! 🌴"
+            "Your hammock is warming up for you! 🌴",
+            "Bernie's next chapter is going to be amazing!",
+            "Vacation mode: loading... almost there!"
         ];
+
+        function setRetirementDate(selection) {
+            currentSelection = selection;
+            retirementDate = retirementDates[selection].date;
+            
+            // Update button states
+            document.getElementById('btn-early').classList.toggle('active', selection === 'early');
+            document.getElementById('btn-late').classList.toggle('active', selection === 'late');
+            
+            // Update display date
+            document.getElementById('display-date').textContent = retirementDates[selection].display;
+            
+            // Show countdown view in case it was hidden
+            document.getElementById('countdown-view').style.display = 'block';
+            document.getElementById('celebration-view').style.display = 'none';
+            
+            // Immediately update countdown
+            updateCountdown();
+        }
 
         function updateCountdown() {
             const now = new Date().getTime();
